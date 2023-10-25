@@ -1,30 +1,34 @@
-# step_template
+![interface data_load](./imgs/data_load_inteface.drawio.png)
 
-Prerequisites
+### add sinara module  
+```
+git submodule add https://github.com/4-DS/sinara.git sinara
+```  
 
-- Sinara is successfully deployed as said in https://github.com/4-DS/sinara-ext-tools.git
+### init DSML module  
+```
+git submodule init
+```
 
-# Step repository naming conventions
+### update to latest DSML module
+```
+git submodule update --remote --merge
+```
 
-We will recommend forming the git repo name as: <%pipeline_name>-<%step_name>
+# Step CV-Pipeline: data_load
 
-But this is not a mandatory requirement. And our library should work under any layouts with naming
-
-The authoritative source of the pipeline and step names will now be exclusively in configs, and will not be tightly tied to the names of folders and git repositories
-
-
-Make the following to create your Sinara step:
-
-1. Create empty git repo with https://github.com/<%organization_name>/<%pipeline_name>-<%step_name>.git 
-2. Clone the dsml component template repository
-- cd work
-- git clone --recurse-submodules https://github.com/4-DS/step_template.git {my_step}
-3. Change dsml component remote origin
-- cd {my_step}
-- git remote set-url origin https://github.com/<%organization_name>/<%pipeline_name>-<%step_name>.git
-4. Squash dsml component template commits
-- cd {my_step}
-- git reset $(git commit-tree HEAD^{tree} -m "a new Sinara step")
-5. Push dsml component template to new origin
-- git push
-6. See the examples for details: https://github.com/4-DS/sinara-ext-tools.git
+Предназначен для загрузка данных из различных источников
+В данном примере загружает датасет [`COCO`](http://images.cocodataset.org/).   
+Для более быстрого запуска и прогона cv-pipeline используем валидационную часть датасета (~1 Гб)
+http://images.cocodataset.org/zips/val2017.zip
+и аннотации к ним http://images.cocodataset.org/annotations/annotations_trainval2017.zip          
+> При желании можно использовать полный датасет COCO указав ссылку "http://images.cocodataset.org/zips/train2017.zip" на него в конфигурационном файле ./params/step_params.json (или использую файл ./params/step_params_full.json)
+    
+Данный компонент создается из [шаблона](https://github.com/4-DS/step_template).
+Чтобы не забывать про обязательные ячейки в каждом ноутбуке, проще всего создавать новые ноутбуки просто копированием [`substep_full.ipynb`](https://github.com/4-DS/step_template/blob/main/substep_full.ipynb) из стандартного [шаблона](https://github.com/4-DS/step_template) компоненты.
+    
+Конечным выходом работы данного step CV-Pipeline является два urls внешнего хранилища
+- **images**     
+изображения скачанного датасета (сохранен как spark parquets)
+- **annotations**    
+файлы аннотации скачанного датасета (сохранен как spark parquets)

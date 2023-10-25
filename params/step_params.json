@@ -2,24 +2,23 @@
     "pipeline_params":
     {
         "env_name":"user",
-        "pipeline_name":"pipeline",
-        "zone_name":"zone",
-        "X": "something"
+        "pipeline_name":"yolox_mmdet",
+        "zone_name":"test"
     },
     "step_params":
     {
-        "Y": "something_else",
-        "step_name": "step_template"
+        "step_name": "data_load"
     },
     "substeps_params":
     [
         {
-            "substep_name":"substep_full.ipynb",
+            "substep_name":"data_load.ipynb",
             "substep_params":
             {
-                "param1":"None1",
-                "param2":"None2"
+                "data_url": "http://images.cocodataset.org/zips/val2017.zip",                
+                "annot_url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip"
             }
         }
     ]
 }
+
