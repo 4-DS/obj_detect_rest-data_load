@@ -1,20 +1,5 @@
 ![interface data_load](./imgs/data_load_inteface.drawio.png)
 
-### add sinara module  
-```
-git submodule add https://github.com/4-DS/sinara.git sinara
-```  
-
-### init DSML module  
-```
-git submodule init
-```
-
-### update to latest DSML module
-```
-git submodule update --remote --merge
-```
-
 # Step CV-Pipeline: data_load
 
 Предназначен для загрузка данных из различных источников
@@ -32,3 +17,26 @@ http://images.cocodataset.org/zips/val2017.zip
 изображения скачанного датасета (сохранен как spark parquets)
 - **annotations**    
 файлы аннотации скачанного датасета (сохранен как spark parquets)
+
+## Add sinara
+
+### clone repository 
+```
+git clone https://gitlab.com/yolox_mmdet/data_load.git
+cd data_load
+```  
+
+### add sinara module  
+```
+git submodule add https://github.com/4-DS/sinara.git sinara
+```  
+
+### init DSML module  
+```
+git submodule init
+```
+
+### update to latest DSML module
+```
+git submodule update --remote --merge
+```
