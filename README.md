@@ -1,42 +1,43 @@
 ![interface data_load](./imgs/data_load_inteface.drawio.png)
 
-# Step CV-Pipeline: data_load
+# Step CV-Pipeline: data_load [RU](README_RU.md)
 
-Предназначен для загрузка данных из различных источников
-В данном примере загружает датасет [`COCO`](http://images.cocodataset.org/).   
-Для более быстрого запуска и прогона cv-pipeline используем валидационную часть датасета (~1 Гб)
+Designed for loading data from various sources
+In this example, it loads the dataset [`COCO`](http://images.cocodataset.org/).   
+To launch and run cv-pipeline faster, we use the validation part of the dataset (~1 GB)
 http://images.cocodataset.org/zips/val2017.zip
-и аннотации к ним http://images.cocodataset.org/annotations/annotations_trainval2017.zip          
-> При желании можно использовать полный датасет COCO указав ссылку "http://images.cocodataset.org/zips/train2017.zip" на него в конфигурационном файле ./params/step_params.json (или использую файл ./params/step_params_full.json)
+and annotations to them http://images.cocodataset.org/annotations/annotations_trainval2017.zip          
+> If desired, you can use the full COCO dataset by specifying the link "http://images.cocodataset.org/zips/train2017.zip" 
+to it in the configuration file ./params/step_params.json (или использую файл ./params/step_params_full.json)
     
-Данный компонент создается из [шаблона](https://github.com/4-DS/step_template).
-Чтобы не забывать про обязательные ячейки в каждом ноутбуке, проще всего создавать новые ноутбуки просто копированием [`substep_full.ipynb`](https://github.com/4-DS/step_template/blob/main/substep_full.ipynb) из стандартного [шаблона](https://github.com/4-DS/step_template) компоненты.
+Created based on [template](https://github.com/4-DS/step_template).
+In order not to forget about the required cells in each laptop, the easiest way to create new jupyter notebooks is simply by copying [`substep_full.ipynb`](https://github.com/4-DS/step_template/blob/main/substep_full.ipynb) from standard [template](https://github.com/4-DS/step_template).
     
-Конечным выходом работы данного step CV-Pipeline является два urls внешнего хранилища
+The final output of this step CV-Pipeline is two external storage urls
 - **images**     
-изображения скачанного датасета (сохранен как spark parquets)
+images of the downloaded dataset (saved as spark parquets)
 - **annotations**    
-файлы аннотации скачанного датасета (сохранен как spark parquets)
+annotation files of the downloaded dataset
 
-## Add sinara
+## How to run a step CV-Pipeline: model_train
 
-### clone repository 
+### Create a directory for the project (or use an existing one)
 ```
-git clone https://gitlab.com/yolox_mmdet/data_load.git
-cd data_load
+mkdir yolox_mmdet
+cd yolox_mmdet
 ```  
 
-### add sinara module  
+### clone the repository: model_train
 ```
-git submodule add https://github.com/4-DS/sinara.git sinara
+git clone --recurse-submodules https://gitlab.com/yolox_mmdet/model_train.git {model_train}
+cd model_train
 ```  
 
-### init DSML module  
+### run step CV-Pipeline:model_train
 ```
-git submodule init
+python step.dev.py
+```  
+or
 ```
-
-### update to latest DSML module
-```
-git submodule update --remote --merge
-```
+step.prod.py
+``` 
