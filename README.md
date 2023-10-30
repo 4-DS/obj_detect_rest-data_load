@@ -19,7 +19,7 @@ images of the downloaded dataset (saved as spark parquets)
 - **annotations**    
 annotation files of the downloaded dataset
 
-## How to run a step CV-Pipeline: model_train
+## How to run a step CV-Pipeline: data_load
 
 ### Create a directory for the project (or use an existing one)
 ```
@@ -27,13 +27,13 @@ mkdir yolox_mmdet
 cd yolox_mmdet
 ```  
 
-### clone the repository: model_train
+### clone the repository: data_load
 ```
-git clone --recurse-submodules https://gitlab.com/yolox_mmdet/model_train.git {model_train}
+git clone --recurse-submodules https://gitlab.com/yolox_mmdet/data_load.git {data_load}
 cd model_train
 ```  
 
-### run step CV-Pipeline:model_train
+### run step CV-Pipeline:data_load
 ```
 python step.dev.py
 ```  

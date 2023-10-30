@@ -18,7 +18,7 @@ http://images.cocodataset.org/zips/val2017.zip
 - **annotations**    
 файлы аннотации скачанного датасета (сохранен как spark parquets)
 
-## Как запустить шаг CV-Pipeline: model_train
+## Как запустить шаг CV-Pipeline: data_load
 
 ### Создать директорию для проекта (или использовать уже существующую)
 ```
@@ -26,13 +26,13 @@ mkdir yolox_mmdet
 cd yolox_mmdet
 ```  
 
-### склонировать репозиторий model_train
+### склонировать репозиторий data_load
 ```
-git clone --recurse-submodules https://gitlab.com/yolox_mmdet/model_train.git {model_train}
+git clone --recurse-submodules https://gitlab.com/yolox_mmdet/data_load.git {data_load}
 cd model_train
 ```  
 
-### запустить шаг CV-Pipeline:model_train
+### запустить шаг CV-Pipeline:data_load
 ```
 python step.dev.py
 ```  
