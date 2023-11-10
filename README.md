@@ -2,7 +2,12 @@
 
 # Step CV-Pipeline: data_load [RU](README_RU.md)
 
-Designed for loading data from various sources
+This component of the computer vision pipeline is responsible for loading data from various sources. It ensures the retrieval and preparation of data for further processing and analysis.    
+It includes the following steps:   
+- Source selection: This step involves choosing the source from which to load the data. The sources can be image or video files.     
+- Data retrieval: After selecting the source, the computer vision component performs operations to retrieve data from the chosen source. For example, for image or video files, this may involve reading the files from disk.     
+- Data transfer to the next stage of the pipeline: After loading and preparing the data, this step of the CV pipeline transfers it to the next stage of the pipeline, which includes other analysis and processing operations.    
+
 In this example, it loads the dataset [`COCO`](http://images.cocodataset.org/).   
 To launch and run cv-pipeline faster, we use the validation part of the dataset (~1 GB)
 http://images.cocodataset.org/zips/val2017.zip
