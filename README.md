@@ -28,7 +28,7 @@ cd yolox_mmdet
 
 ### clone the repository: data_load
 ```
-git clone --recurse-submodules https://gitlab.com/yolox_mmdet/data_load.git {data_load}
+git clone --recurse-submodules https://github.com/4-DS/obj_detect-data_load.git {data_load}
 cd {data_load}
 ```  
 
