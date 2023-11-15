@@ -16,7 +16,7 @@
             "substep_params":
             {
                 "data_url": "http://images.cocodataset.org/zips/val2017.zip",                
-                "annot_url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip"
+                "annotations_url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip"
             }
         }
     ]
