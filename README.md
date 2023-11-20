@@ -2,11 +2,14 @@
 
 # Step CV-Pipeline: data_load [RU](README_RU.md)
 
-This component of the computer vision pipeline is responsible for loading data from various sources. It ensures the retrieval and preparation of data for further processing and analysis.    
-It includes the following steps:   
-- Source selection: This step involves choosing the source from which to load the data. The sources can be image or video files.     
-- Data retrieval: After selecting the source, the computer vision component performs operations to retrieve data from the chosen source. For example, for image or video files, this may involve reading the files from disk.     
-- Data transfer to the next stage of the pipeline: After loading and preparing the data, this step of the CV pipeline transfers it to the next stage of the pipeline, which includes other analysis and processing operations.    
+This component of the CV (computer vision) pipeline is responsible for loading data from various sources. This component ensures the receipt and preparation of data for further processing and analysis.
+Includes the following steps:
+- Data Source Selection: This step involves selecting the source from which the data needs to be loaded.
+Sources can be image or video files.
+- Receiving Data: Once a source is selected, operations are performed to retrieve data from the selected source.
+For example, for image or video files, this could be an operation of copying files from disk or loading a dataset from an external source.
+- Data conversion. At this stage, data is converted from a non-standard format to the standard format of the SinaraML platform
+- Transferring data to the next step of the pipeline: After loading and preparing the data, this stage of the cv pipeline transfers it to the next step of the pipeline, which includes other operations of analysis, processing and preparation of data for training.
 
 In this example, it loads the dataset [`COCO`](http://images.cocodataset.org/).   
 To launch and run cv-pipeline faster, we use the validation part of the dataset (~1 GB)
@@ -37,11 +40,8 @@ git clone --recurse-submodules https://github.com/4-DS/obj_detect-data_load.git 
 cd {data_load}
 ```  
 
-### run step CV-Pipeline:data_load
+### run step CV-Pipeline:data_load in dev mode and then in prod mode
 ```
 python step.dev.py
-```  
-or
-```
-step.prod.py
+python step.prod.py
 ``` 
