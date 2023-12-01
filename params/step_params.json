@@ -16,7 +16,8 @@
             "substep_params":
             {
                 "data_url": "http://images.cocodataset.org/zips/val2017.zip",                
-                "annotations_url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip"
+                "annotations_url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip",
+                "pretrain_weights": "https://download.openmmlab.com/mmdetection/v2.0/yolox/yolox_s_8x8_300e_coco/yolox_s_8x8_300e_coco_20211121_095711-4592a793.pth"
             }
         }
     ]
