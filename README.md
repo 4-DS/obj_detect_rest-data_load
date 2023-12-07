@@ -30,14 +30,14 @@ annotation files of the downloaded dataset
 
 ### Create a directory for the project (or use an existing one)
 ```
-mkdir yolox_mmdet
-cd yolox_mmdet
+mkdir obj_detect_binary
+cd obj_detect_binary
 ```  
 
 ### clone the repository: data_load
 ```
-git clone --recurse-submodules https://github.com/4-DS/obj_detect-data_load.git {data_load}
-cd {data_load}
+git clone --recurse-submodules https://github.com/4-DS/obj_detect_binary-data_load.git {dir_for_data_load}
+cd {dir_for_data_load}
 ```  
 
 ### run step CV-Pipeline:data_load in dev mode and then in prod mode

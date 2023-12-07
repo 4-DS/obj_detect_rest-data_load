@@ -30,14 +30,14 @@ http://images.cocodataset.org/zips/val2017.zip
 
 ### Создать директорию для проекта (или использовать уже существующую)
 ```
-mkdir example_detector
-cd example_detector
+mkdir obj_detect_binary
+cd obj_detect_binary
 ```  
 
 ### склонировать репозиторий data_load
 ```
-git clone --recurse-submodules https://github.com/4-DS/obj_detect-data_load.git {data_load}
-cd {data_load}
+git clone --recurse-submodules https://github.com/4-DS/obj_detect_binary-data_load.git {dir_for_data_load}
+cd {dir_for_data_load}
 ```  
 
 ### запустить шаг CV-Pipeline:data_load в режиме dev, а затем в режиме prod
