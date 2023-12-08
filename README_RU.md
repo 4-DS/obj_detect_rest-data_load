@@ -1,5 +1,3 @@
-![interface data_load](./imgs/data_load_inteface.drawio.png)
-
 # Step CV-Pipeline: data_load [EN](README.md)
 
 Данный компонент CV(computer vision) пайплайна отвечает за загрузку данных из различных источников. Этот компонент обеспечивает получение и подготовку данных для дальнейшей обработки и анализа.    
@@ -15,16 +13,14 @@
 Для более быстрого запуска и прогона cv-pipeline используем валидационную часть датасета (~1 Гб)
 http://images.cocodataset.org/zips/val2017.zip
 и аннотации к ним http://images.cocodataset.org/annotations/annotations_trainval2017.zip          
-
-    
-Данный компонент создается из [шаблона](https://github.com/4-DS/step_template).
-Чтобы не забывать про обязательные ячейки в каждом ноутбуке, проще всего создавать новые ноутбуки просто копированием [`substep_full.ipynb`](https://github.com/4-DS/step_template/blob/main/substep_full.ipynb) из стандартного [шаблона](https://github.com/4-DS/step_template) компоненты.
     
 Конечным выходом работы данного step CV-Pipeline является два urls внешнего хранилища
-- **images**     
+- **coco_datasets_images**     
 изображения скачанного датасета
-- **annotations**    
+- **coco_datasets_annotations**    
 файлы аннотации скачанного датасета
+- **yolox_pth_pretrain_weights**
+предтренировочные веса
 
 ## Как запустить шаг CV-Pipeline: data_load
 
