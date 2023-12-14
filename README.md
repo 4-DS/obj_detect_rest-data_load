@@ -1,9 +1,9 @@
-# Binary CV-Pipeline [RU](README_RU.md)
+# Rest CV-Pipeline [RU](README_RU.md)
 
 A CV or ML Pipeline is a sequence of steps that are performed to process data and train a machine learning model.    
 The main purpose of the CV&ML Pipeline is to automate and standardize the data processing and model training process. Pipeline includes various stages such as data preprocessing, feature extraction, model training, performance evaluation, etc. At the same time, each step in the pipeline can be configured and optimized independently of the others, which makes the pipeline flexible and scalable. This allows you to effectively manage the entire process - automate and standardize the process of data processing and model training. It also contributes to the repeatability and reproducibility of results, which is an important aspect in machine learning.
 
-The Binary CV Pipeline is a scenario in which it is required to transfer the model trained in the PyTorch framework in its original form. In this example, the YOLOX_S model from mmdetection is further trained on a part of the COCO dataset validation sample.   
+The Rest CV Pipeline is a scenario in which it is required to transfer the model trained in the PyTorch framework in its original form pscked in a docker image with REST API. In this example, the YOLOX_S model from mmdetection is further trained on a part of the COCO dataset validation sample.   
 
 This scenario uses the mmdetection framework, which provides an implementation of various computer vision algorithms, including YOLOX_S. The original YOLOX_S model has already been trained on the full COCO dataset, however, in order to further improve its performance and adapt to specific requirements, additional training is being conducted on a part of the COCO validation sample.    
 
@@ -13,12 +13,12 @@ To retrain the model, a part of the COCO validation sample is used, which is a s
   <img src="imgs/Structura_CV_Pipeline.drawio.png" width="500"/>
   <div>&nbsp;</div>
   <div align="center">
-    <b><font size="3">Structure Binary CV-Pipeline</font></b>
+    <b><font size="3">Structure Rest CV-Pipeline</font></b>
   </div>
   <div>&nbsp;</div>
 </div>
 
-# Description of step Binary CV-Pipeline
+# Description of step Rest CV-Pipeline
 ## **Data_load**
 ### Component logic:
 Data_Load is a component of the CV Pipeline, which is responsible for uploading data to the analytical repository. It performs two main functions: uploading external raw data to the platform to convert it into the correct versioned storage structure.    
@@ -59,7 +59,7 @@ _____________________________________________
 ### Component logic:
 At the CV Pipeline Model_Pack stage, the following steps occur:    
 1. Model conversion    
-- The model trained at the previous stage of the CV-Pipeline Model_Train is converted to a format corresponding to certain scenarios. For example, if the CV-Pipeline REST script is selected, the model can be converted to ONIX format, which provides the ability to deploy the model as a REST service. In the case of the Binary CV-Pipeline scenario, the model can be transmitted in the PyTorch format or another format in which it was trained.    
+- The model trained at the previous stage of the CV-Pipeline Model_Train is converted to a format corresponding to certain scenarios. For example, if the CV-Pipeline REST script is selected, the model can be converted to ONIX format, which provides the ability to deploy the model as a REST service.
 2. Packaging in bertoservice    
 After converting the model, the model weights and all necessary artifacts (for example, the test image, the predicates of the test image) are packaged in bentoservice. Packaging in bentoservice allows you to create a containerized application that can be easily deployed and used for inference (prediction) on new data.    
 ### Interface (input, output):
@@ -113,7 +113,7 @@ cd obj_detect_binary
 
 ### clone the repository: data_load
 ```
-git clone --recurse-submodules https://github.com/4-DS/obj_detect_binary-data_load.git {dir_for_data_load}
+git clone --recurse-submodules https://github.com/4-DS/obj_detect_rest-data_load.git {dir_for_data_load}
 cd {dir_for_data_load}
 ```  
 
