@@ -1,11 +1,15 @@
-# Rest CV-Pipeline [RU](README_RU.md)
+# Rest CV-Pipeline 
 
-A CV or ML Pipeline is a sequence of steps that are performed to process data and train a machine learning model.    
-The main purpose of the CV&ML Pipeline is to automate and standardize the data processing and model training process. Pipeline includes various stages such as data preprocessing, feature extraction, model training, performance evaluation, etc. At the same time, each step in the pipeline can be configured and optimized independently of the others, which makes the pipeline flexible and scalable. This allows you to effectively manage the entire process - automate and standardize the process of data processing and model training. It also contributes to the repeatability and reproducibility of results, which is an important aspect in machine learning.
+The REST CV Pipeline scenario involves using a machine learning model along with BentoService (BentoML), which provides REST API functionality.
 
-The Rest CV Pipeline is a scenario in which it is required to transfer the model trained in the PyTorch framework in its original form pscked in a docker image with REST API. In this example, the YOLOX_S model from mmdetection is further trained on a part of the COCO dataset validation sample.   
+In this REST CV Pipeline scenario, we want to use the SinaraML Framework to illustrate the possibility of creating a full cycle of model training:
+from preparing data for training to transferring the trained model to the production environment as a service with a REST API.     
+This provides simplicity and convenience in working with data and models, and also provides the ability to easily transfer the model from one environment to another. Once the service is deployed, we can use it to get predictions from the trained model. We can send API requests with input data and receive responses with model predictions. This allows the model to be used in real time in applications or systems where image analysis is required.
 
-This scenario uses the mmdetection framework, which provides an implementation of various computer vision algorithms, including YOLOX_S. The original YOLOX_S model has already been trained on the full COCO dataset, however, in order to further improve its performance and adapt to specific requirements, additional training is being conducted on a part of the COCO validation sample.    
+If the model needs to be updated, we can repeat the process of training, saving and deploying using SinaraML and BentoML.
+This allows you to quickly and easily update the model in a production environment without interrupting system operation.
+
+This scenario uses the mmdetection framework, which provides an implementation of various computer vision algorithms, including YOLOX_S. The original YOLOX_S model has already been trained on the full COCO dataset, however, in order to further improve its performance and adapt to specific requirements, additional training is being conducted on a part of the COCO validation sample.   
 
 To retrain the model, a part of the COCO validation sample is used, which is a subset of the data from the full dataset. This reduces the amount of data and speeds up the learning process. As a result of further training, the model will be better adapted to specific tasks and data, which will lead to increased accuracy and performance.  
 
@@ -13,7 +17,7 @@ To retrain the model, a part of the COCO validation sample is used, which is a s
   <img src="imgs/Structura_CV_Pipeline.drawio.png" width="500"/>
   <div>&nbsp;</div>
   <div align="center">
-    <b><font size="3">Structure Rest CV-Pipeline</font></b>
+    <b><font size="3">High Concept Binary CV-Pipeline</font></b>
   </div>
   <div>&nbsp;</div>
 </div>
@@ -53,18 +57,18 @@ To transfer to the following components, weights from the last epoch and the epo
 Training and validation datasets (obtained from the previous step CV Pipeline - Data_Prep)    
 Model learning parameters (number of epochs, learning rate, batch size, etc.)   
 - Output:
-A model in the Pytorch format (weights from the last epoch of learning and with the best metrics)  
+Inference files (A model in the Pytorch format) (weights from the last epoch of learning and with the best metrics)  
 _____________________________________________
 ## **Model_pack**
 ### Component logic:
 At the CV Pipeline Model_Pack stage, the following steps occur:    
 1. Model conversion    
-- The model trained at the previous stage of the CV-Pipeline Model_Train is converted to a format corresponding to certain scenarios. For example, if the CV-Pipeline REST script is selected, the model can be converted to ONIX format, which provides the ability to deploy the model as a REST service.
+- The model trained at the previous stage of the CV-Pipeline Model_Train is converted to a format corresponding to certain scenarios. For example, if the CV-Pipeline REST script is selected, the model can be converted to ONNX format, which provides the ability to deploy the model as a REST service.
 2. Packaging in bertoservice    
 After converting the model, the model weights and all necessary artifacts (for example, the test image, the predicates of the test image) are packaged in bentoservice. Packaging in bentoservice allows you to create a containerized application that can be easily deployed and used for inference (prediction) on new data.    
 ### Interface (input, output):
 - Input:
-Model (obtained from the previous step CV Pipeline - Model_Train)
+Inference files (model) (obtained from the previous step CV Pipeline - Model_Train)
 - Output:
 The BentoService model
 _____________________________________________
@@ -78,47 +82,20 @@ The model in Bertoservice (obtained from the previous step CV Pipeline - Model_P
 - Output:
 Model Quality Report
 _____________________________________________
+## **Model_test**
+### Component logic:
+At this stage, CV Pipeline Model_Test tests the packaged BentoML service, which contains the model and other necessary artifacts.
+May contain several tests and examples of calling BentoML REST API methods:
+1. Launch test of packaged bentoservice and test image predictor
+     - Launching the BentoML service (obtained from the Model_Pack component) to process images and obtain predictors
+     - Obtaining a test image and the saved result of processing the test image (must be in the bentoservice artifacts) through the REST API methods of the BentoML service
+       The previously saved processing result on the test image is used as a reference value.
+     - Prediction of a test image via the REST API of the BentoML service
+     - Comparison of the test image predictor with the saved test result. May involve comparing values or other characteristics of a predictor with reference values.
+2. Load test, when for a specified time there is a sequential call to the REST API predict method on a test image.
+    This test allows you to evaluate the performance of the BentoML model and service when processing a large number of requests. 
+### Interface (input, output):
+- Input:
+Bertoservice (obtained from the previous step CV Pipeline - Model_Pack)    
 _____________________________________________
-# Step CV-Pipeline: data_load
 
-This component of the CV (computer vision) pipeline is responsible for loading data from various sources. This component ensures the receipt and preparation of data for further processing and analysis.
-Includes the following steps:
-- Data Source Selection: This step involves selecting the source from which the data needs to be loaded.
-Sources can be image or video files.
-- Receiving Data: Once a source is selected, operations are performed to retrieve data from the selected source.
-For example, for image or video files, this could be an operation of copying files from disk or loading a dataset from an external source.
-- Data conversion. At this stage, data is converted from a non-standard format to the standard format of the SinaraML platform
-- Transferring data to the next step of the pipeline: After loading and preparing the data, this stage of the cv pipeline transfers it to the next step of the pipeline, which includes other operations of analysis, processing and preparation of data for training.
-
-In this example, it loads the dataset [`COCO`](http://images.cocodataset.org/).   
-To launch and run cv-pipeline faster, we use the validation part of the dataset (~1 GB)
-http://images.cocodataset.org/zips/val2017.zip
-and annotations to them http://images.cocodataset.org/annotations/annotations_trainval2017.zip          
-   
-The output of this step CV-Pipeline is two external storage urls
-- **coco_datasets_images**     
-images of the downloaded dataset
-- **coco_datasets_annotations**    
-annotation files of the downloaded dataset
-- **yolox_pth_pretrain_weights**
-pretrain weights
-
-## How to run a step CV-Pipeline: data_load
-
-### Create a directory for the project (or use an existing one)
-```
-mkdir obj_detect_binary
-cd obj_detect_binary
-```  
-
-### clone the repository: data_load
-```
-git clone --recurse-submodules https://github.com/4-DS/obj_detect_rest-data_load.git {dir_for_data_load}
-cd {dir_for_data_load}
-```  
-
-### run step CV-Pipeline:data_load in dev mode and then in prod mode
-```
-python step.dev.py
-python step.prod.py
-``` 
